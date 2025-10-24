@@ -4,6 +4,5 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/jupyter_clickable_image_widget" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/jupyter_clickable_image_widget/jupyter_clickable_image_widget/jupyter_clickable_image_widget" vcs="Git" />
   </component>
 </project>
