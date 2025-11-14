@@ -31,6 +31,12 @@ class Arm:
         else:
             print("Invalid state")
 
+    def move_arm(self, positions: [int]):
+        if len(positions) != 6:
+            print("Must have 6 ")
+        for servo in self.servos:
+            self.arm.setPosition(servo.servo_id, positions[servo.servo_id - 1])
+
     def get_joints(self):
         joints = []
         for servo in self.servos:  # Returns list of 6 floats + voltages
