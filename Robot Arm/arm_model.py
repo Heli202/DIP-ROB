@@ -3,7 +3,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 
 
-class Model:
+class ArmModel:
     def __init__(self):
         self.model = tf.keras.models.load_model("servo_model.keras")
 
