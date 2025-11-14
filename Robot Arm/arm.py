@@ -1,7 +1,5 @@
-#! /usr/bin/python3.7
 import time
 import xarm
-import serial as ser
 
 
 class Arm:
