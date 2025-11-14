@@ -1,13 +1,14 @@
-from inference import InferencePipeline
-import supervision as sv
+from inference import get_model
+import json
 import cv2
 
 class NumberModel:
     def __init__(self):
-        self.pipeline = InferencePipeline.init_with_workflow(
-            api_key=
-        )
+        secrets_file = 'secrets/secrets.json'
+        with open(secrets_file) as f:
+            api_key = json.load(f).get('api_key')
 
-    def predict(self, image):
-        results = self.model.infer(image)[0]
-        return results
+        self.model = get_model("numbers-xnrog-d6zw6/1", api_key)
+
+    def predict(self, image_path):
+        return self.model.infer(cv2.imread(image_path))
