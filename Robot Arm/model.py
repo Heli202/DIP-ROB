@@ -9,7 +9,7 @@ class Model:
 
     def predict(self, img_array: np.array) -> list:
         predicted_positions = self.model.predict(img_array)[0]
-        return predicted_positions.tolist()
+        return np.round(predicted_positions).tolist()
 
     def load_image(self, path: str) -> np.array:
         img = load_img(path)

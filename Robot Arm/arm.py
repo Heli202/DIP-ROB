@@ -33,7 +33,8 @@ class Arm:
 
     def move_arm(self, positions: [int]):
         if len(positions) != 6:
-            print("Must have 6 ")
+            print("Must have 6 positions in the array")
+            return
         for servo in self.servos:
             self.arm.setPosition(servo.servo_id, positions[servo.servo_id - 1])
 
