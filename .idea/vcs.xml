@@ -3,6 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/jupyter_clickable_image_widget" vcs="Git" />
   </component>
 </project>
