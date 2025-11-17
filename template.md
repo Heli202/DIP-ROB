@@ -20,11 +20,14 @@ Use this as Assessment template, filling in project-specific details based on yo
 - **Data Mining Goals:** Develop models for piece detection (~70% accuracy), pose estimation (handling rotations), and arm control (50% pick-place success).  
 - **Project Plan:** Timeline (4-6 weeks); resources (Jetson Nano, xArm1S, Roboflow). 
 - **Risks:**
-	- *Student input* 
-	- *Student input* 
+	- Flaws with the hardware, causing it to not work as it is supposed to.
+	- Object Detection model cannot identify numbers clearly enough or with high enough accuracy.
+ 	- The CNN (Convolutional Neural Network) model for the arm cannot move the arm in the right direction.
+  	- Python version incompatability between the Jetson Nano and xArm1S.
 
 
-- ***Student Input:*** [Describe how you  addressed the  business need 100-200 words]  
+- ***Student Input:*** [Describe how you  addressed the  business need 100-200 words]
+	- I addressed the business need to create an automated process of detecting puzzle pieces, picking them up, and placing them by creating two separate models for both number detection and to move the xArm1S's servos to attempt to pick up the puzzle piece. By defining clear goals for how the models should perform, such as > 70% accuracy for number detection and > 50% success rate in picking up the puzzle pieces, I contributed to the business need by making a strong start for the entire puzzle solving process. I ended up ruling out the Jetson Nano as a method of data collection and vision to see the puzzle pieces in order to create an educational robotics demo, as within the timeframe getting past the incompatibility of Python version between hardware components was inviable. By using Roboflow to augment the images, the small dataset was able to become less biased to make it more robust, while also proving to be a useful platform for training the object detection model as well. I used Google Colab to train the CNN (Convolutional Neural Network) model to be able to get the xArm1S to attempt to pick up the puzzle pieces regardless of where they are, as long as they are in range.
 
    *Mapping to Units:** ICTAII501 PC 1.1-1.2 (confirm work brief via CRISP-DM business phase).*
 
