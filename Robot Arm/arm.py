@@ -31,7 +31,7 @@ class Arm:
         else:
             print("Invalid state")
 
-    def move_arm(self, positions: [int]):
+    def move_arm(self, positions: list[int]):
         if len(positions) != 6:
             print("Must have 6 positions in the array")
             return
