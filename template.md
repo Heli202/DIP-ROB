@@ -103,6 +103,8 @@ This is an early model that was trained (it looks better than the last one, howe
   	- Policy model processing time to attempt to place the number in the correct position.
 - **Business Reporting:** *Student input*
 	- This is a demo video of the robot attempting to pick up the number: [Final Demo Video](https://youtu.be/YhuzUlPbKec)
+ 	- Below is also the output from the model incase you cannot see it in the video for the positions after each attempt:
+ ![FJuk-f0I](https://github.com/user-attachments/assets/320c008e-5bff-4282-8bd5-e869fdd5c966)
 	- I am versioning my models through the use of the /Models directory. They are using versioning with v1 being the first, with next iterations following v1.1 or v2 depending on how big of an improvement there is. By quarterly retraining the model, each iteration will improve upon the previous model.
  	- As for the time invested, the model can currently detect a number is on the table, however this number may be incorrect or not pick it up immediately. When the object detection model detects a number, the robot arm will then attempt to pick up the number, with there being 3 attempts at picking it up. It cannot pick it up however, and is very far off of getting close to it. You can then choose to retry by moving the number or trying with the same location, however this will still be very likely to fail.
 *Mapping to Units ICTAII501 PC 2 (design for deployment); ICTAII502 PC 4.1-4.5 (finalize test procedures).*  
