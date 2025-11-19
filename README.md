@@ -33,8 +33,9 @@ Both connected to the same PC.
 ```git clone https://github.com/Heli202/DIP-ROB.git```
 2. After creating a virtual environment, pip install the requirements:
 ```pip install -r requirements.txt```
-3. Place a puzzle piece in view underneath the camera, ensuring the robot arm can reach it.
-4. Run ```main.py``` inside ```/Robot Arm``` and observe the robot trying to pick up a number.
+3. Place your API key for the number model in ```/Robot Arm/secrets/secrets.json```.
+4. Place a puzzle piece in view underneath the camera, ensuring the robot arm can reach it.
+5. Run ```main.py``` inside ```/Robot Arm``` and observe the robot trying to pick up a number.
 
 ### Demo Video
 A video demonstrating the project in its current state can be found here: [Demo Video](https://youtu.be/YhuzUlPbKec)
