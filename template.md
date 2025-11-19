@@ -39,14 +39,13 @@ Use this as Assessment template, filling in project-specific details based on yo
 - **Initial Data Collection:** 100-200 images of puzzle pieces/slots from top-down camera (via Jetson CSI), plus teleop videos (ROS2 bags) for joint states. Sources: Manual photos, Roboflow public datasets for augmentation.  
 - **Data Description:** Structure (images: RGB, 224x224; labels: 0-9 classes; joints: 6D floats). Volume: ~5k samples post-augmentation.  
 - **Data Exploration:** Use pandas/matplotlib for histograms (e.g., class balance: 10% per digit); identify issues (e.g., lighting bias via correlation plots).  
-- **Student Input:** [From Part 1: Summarise your Roboflow dataset stats, e.g., "50 images/class; explored via Hello AI tools, found 20% rotation variance." Include a sample plot code/output.]  
-  ```python
-  # Example exploration code (adapt from your work)
-  import matplotlib.pyplot as plt
-  # Load data and plot class distribution
-  plt.bar(classes, counts)
-  plt.show()
-  ```  
+- **Student Input:** [From Part 1: Summarise your Roboflow dataset stats, e.g., "50 images/class; explored via Hello AI tools, found 20% rotation variance." Include a sample plot code/output.]
+	- My Roboflow dataset originated from 2745 images from a [different dataset](https://universe.roboflow.com/srr-yrcal-anadolu-lisesi/numbers-xnrog), along with 96 images of the puzzle pieces for feature engineering of our specific use case. Each image has 3 outputs for augmentation including rotating clockwise, anti clockwise and upside down, grayscale of 21% of the images, and blur up to 1.7 px. This produced 8155 total images, where an accuracy for the test images reached was between 60 and 95%.
+ - As my entire dataset was on Roboflow, I was not able to get a sample plot code/output, however below is some metrics of my dataset:
+<img width="1500" height="202" alt="Screenshot 2025-11-19 095200" src="https://github.com/user-attachments/assets/cbec7b1c-5c86-462c-b8ce-0cd845f3463f" />
+<img width="800" height="800" alt="Screenshot 2025-11-19 094816" src="https://github.com/user-attachments/assets/4fffde3d-08db-44bd-9479-b1feb51051d3" />
+<img width="800" height="700" alt="Screenshot 2025-11-19 094837" src="https://github.com/user-attachments/assets/329e67bb-5f78-4ef1-9131-6828b8d6566c" />
+
 *Mapping to Units ICTAII502 PC 1.1-1.6 (analyse requirements and data attributes using CRISP-DM data phase).*  
 
 ---
@@ -57,7 +56,7 @@ Use this as Assessment template, filling in project-specific details based on yo
 - **Data Cleaning:** Remove duplicates/blurry images (OpenCV thresholding); handle missing labels via Roboflow auto-annotation.  
 - **Feature Engineering:** Augment for rotations (0-360° via Albumentations); normalize images (0-1 scale); engineer joint deltas from teleop recordings.  
 - **Final Dataset:** Train (70%): 3.5k samples; Val (20%): 1k; Test (10%): 500. Format: PyTorch DataLoader for Jetson training.  
-- **Student Input:** [Detail your prep from thumbs classifier/Roboflow, e.g., "Applied flips and brightness augments to address orientation issues." Include before/after metrics, e.g., variance reduction.]  
+- **Student Input:** As I was using Roboflow, applying augmentation to the images in my dataset was very easy, and this consisted of rotating the images clockwise, anti clockwise, upside down, grayscaling 21% of images and blurring up to 1.7 px. This allowed the dataset to become less biased in the quality of images, so that when using a lower quality webcam, the model has a better time recognising different numbers. This helped my model generalise and made it more robust both in training and in the final product.
 - **Mapping to Units:** ICTAII502 PC 2.1-2.4 (set parameters, engineer features per CRISP-DM prep phase).  
 
 ---
@@ -65,9 +64,16 @@ Use this as Assessment template, filling in project-specific details based on yo
 ## Phase 4: Modeling
 **Objective:** Select and apply ML techniques, tuning parameters.  
 
-- **Model Selection:** - *Student input* - Name, use etc
-- **Techniques Applied:** - *Student input* - eg, Supervised training 
-- **Model Building:**  - *Student input* - eg, Train detection first (output: boxes/classes); then policy (input: cropped image + joints; output: 6D deltas). Export to TensorRT.  
+- **Model Selection:** - Name: 'numbers 1' with ID: 'numbers-xnrog-d6zw6/1', with the model type: YOLOv11 Object Detection (Accurate) 
+- **Techniques Applied:**
+	- Supervised training, with labelled data.
+ 	- Augmentation:
+  		- Rotation: clockwise, anti clockwise, upside down
+    	- Grayscale on 21% of images.
+     	- Blurring up to 1.7 px.
+  	- Manual early stopping once loss stagnated to avoid overfitting.
+  	- Data splitting for training, validation and test subsets.  
+- **Model Building:**  - I trained the object detection model first, then trained the policy model by saving images of where the puzzle piece is in relation to the robot arm, while the file names were the positions of each of the servos at that time. I then used inference through the use of API to access the model.
 
 *Mapping to Units ICTAII502 PC 3.1-3.5 (arrange validation, refine parameters via CRISP-DM modeling).*  
 
