@@ -166,7 +166,7 @@ class GripDataset(Dataset):
 dataset = GripDataset('dataset_grip')
 dataloader = DataLoader(dataset, batch_size=8, shuffle=True)
 
-# Model: Simple ResNet for regression
+# ArmModel: Simple ResNet for regression
 model = models.resnet18(pretrained=True)
 model.fc = nn.Sequential(
     nn.Linear(512 + 6, 128),  # +6 for joints
@@ -219,7 +219,7 @@ torch.onnx.export(model, torch.randn(1, 512+6).cuda(), 'grip_model.onnx')
   # Apply deltas incrementally: for d in deltas: adjust_joints(d * 0.1)  # Smooth
   if check_grip_success():
       set_state('ready_to_move')
-      # Repeat for nav model: infer to slot
+      # Repeat for nav arm_model: infer to slot
   ```
 - **Test**: 10 runs on one piece/slot. Success: Grip + place without collision. Debug: Log joints/images.
 - **Next**: Scale to all 10 pieces (reuse data), add MoveIt2 fallback.
